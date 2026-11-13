@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Pecanding · fotos comestibles</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <div class="brand">🍰 Pecanding · fotos comestibles</div>
+  <div class="week" id="weekLabel">sin semana</div>
+  <div class="actions">
+    <button id="btnImport">Importar Craft…</button>
+    <label class="chk"><input type="checkbox" id="chkFetch" checked> bajar fotos</label>
+    <button id="btnPrepare">Preparar semana</button>
+    <button id="btnAuto">Auto acomodar</button>
+    <button id="btnAddSheet">+ hoja</button>
+    <button id="btnExport" class="primary">Exportar PDF</button>
+  </div>
+</header>
+<div id="main">
+  <aside id="orders"></aside>
+  <section id="editor">
+    <div id="tabs"></div>
+    <div id="canvasWrap"><canvas id="canvas" width="945" height="756"></canvas></div>
+    <div id="statusbar"></div>
+  </section>
+  <aside id="panel" class="hidden">
+    <h3>Pieza</h3>
+    <div id="panelBody"></div>
+  </aside>
+</div>
+<dialog id="dlgImport">
+  <h3>Importar página de Craft</h3>
+  <p class="hint">Pega el markdown de <code>blocks get &lt;pageId&gt; --format markdown</code> (o exporta la semana como Markdown en Craft), o elige un archivo. Si pegas el documento raíz con varias semanas, se elige la semana en curso.</p>
+  <textarea id="importText" placeholder="**1. Nombre (#10xxx) —** Mini redondo; ... [foto comestible](https://...)"></textarea>
+  <input type="file" id="importFile" accept=".md,.txt,.json">
+  <div class="row">
+    <button id="btnDoImport" class="primary">Importar</button>
+    <button id="btnCloseImport">Cerrar</button>
+  </div>
+</dialog>
+<dialog id="dlgReport"><pre id="reportText"></pre><div class="row"><button id="btnCloseReport">Cerrar</button></div></dialog>
+<script src="/static/app.js"></script>
+</body>
+</html>
