@@ -1,0 +1,7 @@
+# Núcleo (obligatorio) — funciona igual en macOS y Linux con Python 3.10+
+pillow>=10.0
+numpy>=1.24
+
+# Opcional: quitar fondo de las recortadas (fotito cake) automáticamente
+# rembg>=1.0
+# onnxruntime>=1.17
