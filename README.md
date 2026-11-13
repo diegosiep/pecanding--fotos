@@ -75,7 +75,7 @@ Sin token, usa la importación de archivo/pegado (recomendado).
 ## Estructura
 
 ```
-app/
+app/                app web/CLI en Python (Linux y macOS)
   config.py         medidas (px/cm, tamaños, zona segura)
   parse_orders.py   parser de la página semanal de Craft -> pedidos
   photos.py         descarga de ligas (WhatsForm/Drive), subidas, detección B/N
@@ -85,10 +85,40 @@ app/
   server.py         servidor local 127.0.0.1 + API JSON
   static/           editor web (canvas)
   __main__.py       CLI: serve | run
+macos/              app nativa macOS (Xcode/SwiftUI) — mismas funciones exactas
+  PecandingFotos/   código Swift (parser, fotos, Vision para quitar fondo,
+                    acomodo, render, export PDF 25x20 cm, editor)
+  PecandingFotos.xcodeproj/   proyecto Xcode (generado por scripts/generate_xcodeproj.py)
+  scripts/generate_xcodeproj.py
 tests/              fixtures + tests (python3 tests/test_*.py)
 data/               proyecto actual (project.json) y fotos cacheadas (git-ignored)
 out/                PDFs/PNGs/reportes exportados (git-ignored)
 ```
+
+## App nativa para Mac (Xcode)
+
+Mismas funciones exactas que la app Python, corriendo nativo en tu Mac:
+
+```sh
+open macos/PecandingFotos.xcodeproj     # Cmd+R para correr (macOS 13+)
+```
+
+- Importa la página semanal de Craft (pegar markdown o elegir archivo; si pegas el
+  documento raíz elige la semana en curso).
+- Baja las fotos (WhatsForm/Drive) o súbelas; las que no tengan acceso quedan como
+  PENDIENTE en el reporte.
+- Editor sobre la hoja 945×756: mover, tamaño (manija), rotar 90°, encuadre con
+  arrastrar/rueda, **quitar fondo con Vision** (segmentación de persona, equivalente
+  a rembg), solo cabeza, GORRITO, B/N (sí aplica el filtro), etiquetas editables.
+- **Auto acomodar** con las mismas reglas (guías a 2 cm, zona 21×16 cm, gap ≥ 0.5 cm,
+  GUÍA 1:1 por tamaño, por día dentro del tamaño).
+- **Exportar PDF** a 25×20 cm exactos por página + PNG por hoja + `reporte.md`
+  (se abre en Application Support/PecandingFotos/out y se revela en el Finder).
+- Estado en `Application Support/PecandingFotos/project.json` (mismo formato JSON
+  que la app Python).
+
+Para regenerar el proyecto Xcode tras agregar archivos Swift:
+`python3 macos/scripts/generate_xcodeproj.py`
 
 ## Pruebas
 
