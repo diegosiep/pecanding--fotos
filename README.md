@@ -103,6 +103,11 @@ Mismas funciones exactas que la app Python, corriendo nativo en tu Mac:
 open macos/PecandingFotos.xcodeproj     # Cmd+R para correr (macOS 13+)
 ```
 
+**Especificación completa** ("a santo y seña" para armarla en Xcode o con cualquier IA):
+[`macos/SPEC.md`](macos/SPEC.md) — fuentes de datos y formato real de Craft, medidas
+exactas, modelo JSON, parser, quitar fondo con Vision, algoritmo de acomodo, render,
+export PDF 25×20 cm, UI, estructura de archivos, guardarraíles y verificación mínima.
+
 - Importa la página semanal de Craft (pegar markdown o elegir archivo; si pegas el
   documento raíz elige la semana en curso).
 - Baja las fotos (WhatsForm/Drive) o súbelas; las que no tengan acceso quedan como
